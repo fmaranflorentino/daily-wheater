@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 
-import Wrapper from './../../hoc/Wrapper';
+import Wrapper from '../../hoc/Wrapper';
 
-class WheaterStatus extends Component {
+class Wheater extends Component {
   render() {
     return (
         <Wrapper>
@@ -13,4 +13,4 @@ class WheaterStatus extends Component {
   }
 }
 
-export default WheaterStatus;
+export default Wheater;
