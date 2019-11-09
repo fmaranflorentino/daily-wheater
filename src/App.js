@@ -1,15 +1,15 @@
 import React from 'react';
 
 import Wrapper from './hoc/Wrapper';
-import Layout from './components/Layout/Layout';
+import Layout from './components/';
 
-import WheaterStatus from './containers/Wheater/Wheater';
+import Wheater from './containers/Wheater/Wheater';
 
 function App() {
   return (
     <Wrapper>
       <Layout>
-        <WheaterStatus />
+        <Wheater />
       </Layout>
     </Wrapper>
   );
