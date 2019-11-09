@@ -1,3 +1,10 @@
+<p align="center">
+  <a href="https://platformbuilders.io/" target="_blank" rel="noopener noreferrer">
+    <img width="300" src="src/assets/pb.png" alt="Platform Builders Logo">
+  </a>
+</p>
+
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
