@@ -1,13 +1,14 @@
 import React from 'react';
 
-import Wrapper from '../../hoc/Wrapper';
+import Wrapper from './../../hoc/Wrapper';
+import Header from './../UI/Header/';
+
+import './Layout.css';
 
 const layout = (props) => (
    <Wrapper>
-    <div>
-        HTML CONTENT
-    </div>
-    <main>
+    <Header></Header>
+    <main class="app-container">
         {props.children}
     </main>
    </Wrapper>
