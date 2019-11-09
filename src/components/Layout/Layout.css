@@ -1,0 +1,11 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.app-container {
+  background: #ccc;
+
+  width: 100vw;
+  height: calc(100vh - 70px);
+}
