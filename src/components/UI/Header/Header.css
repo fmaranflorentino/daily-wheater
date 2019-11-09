@@ -1,6 +1,14 @@
 .Header {
     background: linear-gradient(#09143c, #050e2f);
 
+    font-family: 'Ubuntu Bold';
+    font-size: 2rem;
+    color: #fff;
+
+    display: flex;
+    align-items: center;
+
     width: 100vw;
     height: 70px;
+    padding: 0 40px;
 }
