@@ -1,4 +1,4 @@
-<p align="center">
+<p align="left">
   <a href="https://platformbuilders.io/" target="_blank" rel="noopener noreferrer">
     <img width="300" src="src/assets/pb.png" alt="Platform Builders Logo">
   </a>
