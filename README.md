@@ -6,14 +6,11 @@
   <h4>Daily Weather - A React Current Weather app</h4>
 </p>
 
-<p align="left">
-This react application for technical demonstration; target: [Platform Builders](https://platformbuilders.io/)
-</p>
 
-<p align="left">
-Application develop by: <br>
+This react application for technical demonstration; target: [Platform Builders](https://platformbuilders.io/)
+
+Application develop by:
 [Flávio Maran Florentino](https://www.linkedin.com/in/fl%C3%A1vio-maran-florentino-97b12610a/)
-</p>
 
 <p align="left">
     <img width="80" src="src/assets/logo-fmf.png" alt="Platform Builders Logo">
