@@ -4,7 +4,7 @@
 }
 
 .app-container {
-  background: #ccc;
+  background: linear-gradient(#050e2f, #030b27);
 
   width: 100vw;
   height: calc(100vh - 70px);
