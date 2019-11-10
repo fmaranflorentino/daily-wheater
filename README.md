@@ -3,18 +3,21 @@
     <img width="300" src="src/assets/pb.png" alt="Platform Builders Logo">
   </a>
 
-  <h4>Daily Weather - A React Current Weather app</h4>
 </p>
 
+# Daily Weather - A React Current Weather app
 
-This react application for technical demonstration; target: [Platform Builders](https://platformbuilders.io/)
+### This react application for technical demonstration; target: [Platform Builders](https://platformbuilders.io/)
 
-Application develop by:
-[Flávio Maran Florentino](https://www.linkedin.com/in/fl%C3%A1vio-maran-florentino-97b12610a/)
+
+### Application develop by:
 
 <p align="left">
-    <img width="80" src="src/assets/logo-fmf.png" alt="Platform Builders Logo">
+    <img width="40" src="src/assets/logo-fmf.png" alt="Platform Builders Logo">
 </p>
+
+### [Flávio Maran Florentino](https://www.linkedin.com/in/fl%C3%A1vio-maran-florentino-97b12610a/)
+
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 

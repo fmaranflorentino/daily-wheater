@@ -1,0 +1,26 @@
+.Button {
+  border-radius: 8px;
+  background-color: #835dfe;
+  color: #fff;
+  text-transform: uppercase;
+  font-weight: bold;
+  border: 0;
+  outline: 0;
+
+  cursor: pointer;
+
+  display: flex;
+  align-items: center;
+  margin: 0;
+  padding: 14px 20px;
+}
+
+.Button.sm {
+    padding: 12px 14px;
+
+    font-size: 12px;
+}
+
+.Button img {
+    margin-right: 10px;
+}
