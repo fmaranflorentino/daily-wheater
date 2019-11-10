@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 import axios from 'axios';
 
 import Wrapper from '../../hoc/Wrapper';
+import Error from './../../components/UI/Error';
+import Loader from './../../components/UI/Loader';
+
 import WeaterInformationCard from './../../components/Wheater/WheaterInformationCard';
 import NoGeolocation from './../../components/UI/NoGeolocation';
 
@@ -12,34 +15,51 @@ import Place from './../../assets/icons/place.svg';
 class Wheater extends Component {
   state = {
     hasGeolocation: undefined,
+    userDenied: false,
     currentWeather: [],
     initialAnimation: false,
     finishAnimation: false,
+    loadingRequest: false,
+    hasweater: false,
   }
 
   constructor() {
     super();
+
     this.requestUserLocation = this.requestUserLocation.bind(this);
     this.getUserGeolocationHandler = this.getUserGeolocationHandler.bind(this);
+    this.userRequestLocationHandler = this.userRequestLocationHandler.bind(this);
+    this.requestWeatherForescast = this.requestWeatherForescast.bind(this);
   }
 
   componentDidMount() {
     this.setState({ initialAnimation: true })
     setTimeout(() => {
-      console.log(this.state)
       this.setState({ finishAnimation: true })
+
+      // if (navigator.geolocation) {
+      //   navigator.geolocation
+      //     .getCurrentPosition((pos) => {
+      //       if (pos) {
+      //         this.setState({ hasGeolocation: true })
+      //       }
+      //     });
+      // }
+
 
     }, 600);
   }
 
   userRequestLocationHandler(error) {
-    console.log(error);
+    if (error && error.code === 1) {
+      this.setState({ userDenied: true })
+    }
   }
 
-  requestUserLocation() {
+  requestUserLocation(request) {
     if (navigator.geolocation) {
       navigator.geolocation
-      .getCurrentPosition(this.getUserGeolocationHandler, this.userRequestLocationHandler);
+        .getCurrentPosition(this.getUserGeolocationHandler, this.userRequestLocationHandler);
     }
   }
 
@@ -54,62 +74,74 @@ class Wheater extends Component {
       units: 'metric'
     };
 
+    this.setState({ hasGeolocation: true })
+
     this.requestWeatherForescast(params);
   }
 
   requestWeatherForescast(params) {
+    this.setState({ loadingRequest: true });
+
     axios.get(`http://api.openweathermap.org/data/2.5/weather`, { params })
       .then(res => {
         const currentWeather = res.data;
         const [weather] = res.data.weather;
         currentWeather.weather = weather;
 
-        this.setState({ currentWeather, hasGeolocation: true });
+        this.setState({ currentWeather, hasWeater: true, loadingRequest: false });
       });
+
+    console.log(this.state);
   }
 
-
   render() {
-    if (this.state && this.state.hasGeolocation) {
-      const regionName = this.state.currentWeather.name;
-      return (
-        <Wrapper>
+    // if (this.state && this.state.hasGeolocation) {
+    //   return <p>has porra</p>
+    // }
 
-          <WeaterInformationCard
-            weather={this.state.currentWeather.weather}
-            regionName={regionName}
-            show={this.state.hasGeolocation}
-            main={this.state.currentWeather.main}
-          />
-
-        </Wrapper>
-      )
-    }
-    return (
+    const defaultState = (
       <Wrapper>
         <NoGeolocation
           initialAnimation={this.state.initialAnimation}
           finishAnimation={this.state.finishAnimation}
-          span='Hummm!'
+          span='opss!'
           message='Precisamos de sua localização para iniciar!'
           btnText='Ativar localização'
           btnIcon={Place}
           click={this.requestUserLocation}
         />
-        {/* <section>
-          <div className={noContentClasses.join(' ')}>
-            <img width='70' src={Storm} alt='Ícone de tempestade' />
-            <p><span></span> </p>
-            <Button
-              click={this.requestUserLocation}
-              text='Ativar localização'
-              icon={Place}
-            />
-          </div>
-        </section> */}
       </Wrapper>
     );
+
+    const hasWeatherInformationState = (props) => (
+      <Wrapper>
+
+        <WeaterInformationCard
+          weather={this.state.currentWeather.weather}
+          regionName={props.regionName}
+          show={this.state.hasGeolocation}
+          main={this.state.currentWeather.main}
+        />
+
+      </Wrapper>
+    )
+
+    if (this.state && this.state.hasWeater && !this.state.loadingRequest) {
+      const regionName = this.state.currentWeather.name;
+      return hasWeatherInformationState(regionName);
+    }
+
+    if (this.state && this.state.userDenied && !this.state.loadingRequest) {
+      return <Error message='Você não autorizou nossa aplicação acessar sua localização :/' />;
+    }
+
+    if (this.state && this.state.loadingRequest) {
+      return <Loader />;
+    }
+
+    return defaultState;
   }
+
 }
 
 export default Wheater;
