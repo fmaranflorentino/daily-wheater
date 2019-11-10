@@ -3,12 +3,10 @@ import axios from 'axios';
 
 import Wrapper from '../../hoc/Wrapper';
 import WeaterInformationCard from './../../components/Wheater/WheaterInformationCard';
-import Button from './../../components/UI/Button'
+import NoGeolocation from './../../components/UI/NoGeolocation';
 
 import './Wheater.css';
-import Storm from './../../assets/icons/storm.svg';
 import Place from './../../assets/icons/place.svg';
-// import Modal from './../../components/UI/Modal/Modal';
 
 
 class Wheater extends Component {
@@ -21,7 +19,8 @@ class Wheater extends Component {
 
   constructor() {
     super();
-    this.oi = this.oi.bind(this);
+    this.requestUserLocation = this.requestUserLocation.bind(this);
+    this.getUserGeolocationHandler = this.getUserGeolocationHandler.bind(this);
   }
 
   componentDidMount() {
@@ -33,17 +32,18 @@ class Wheater extends Component {
     }, 600);
   }
 
-  geterror(error) {
+  userRequestLocationHandler(error) {
     console.log(error);
   }
 
-  oi() {
+  requestUserLocation() {
     if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(this.getposition, this.geterror);
+      navigator.geolocation
+      .getCurrentPosition(this.getUserGeolocationHandler, this.userRequestLocationHandler);
     }
   }
 
-  getposition = (position) => {
+  getUserGeolocationHandler = (position) => {
     const latitude = position.coords.latitude;
     const lon = position.coords.longitude;
 
@@ -54,12 +54,10 @@ class Wheater extends Component {
       units: 'metric'
     };
 
-    // this.setState({ hasGeolocation: true });
-
-    this.get(params);
+    this.requestWeatherForescast(params);
   }
 
-  get(params) {
+  requestWeatherForescast(params) {
     axios.get(`http://api.openweathermap.org/data/2.5/weather`, { params })
       .then(res => {
         const currentWeather = res.data;
@@ -67,18 +65,11 @@ class Wheater extends Component {
         currentWeather.weather = weather;
 
         this.setState({ currentWeather, hasGeolocation: true });
-
-      })
+      });
   }
 
 
   render() {
-    const noContentClasses = [
-      'no-content',
-      this.state.initialAnimation ? 'activeNoContent' : 'dsd',
-      this.state.finishAnimation ? 'finish' : 'leaveActiveContent'
-    ];
-
     if (this.state && this.state.hasGeolocation) {
       const regionName = this.state.currentWeather.name;
       return (
@@ -91,26 +82,31 @@ class Wheater extends Component {
             main={this.state.currentWeather.main}
           />
 
-
-          {/* <Modal show={true} >
-               bctt
-                </Modal> */}
         </Wrapper>
       )
     }
     return (
       <Wrapper>
-        <section>
+        <NoGeolocation
+          initialAnimation={this.state.initialAnimation}
+          finishAnimation={this.state.finishAnimation}
+          span='Hummm!'
+          message='Precisamos de sua localização para iniciar!'
+          btnText='Ativar localização'
+          btnIcon={Place}
+          click={this.requestUserLocation}
+        />
+        {/* <section>
           <div className={noContentClasses.join(' ')}>
             <img width='70' src={Storm} alt='Ícone de tempestade' />
-            <p><span>Hummm!</span> Precisamos de sua localização para iniciar!</p>
+            <p><span></span> </p>
             <Button
-              click={this.oi}
+              click={this.requestUserLocation}
               text='Ativar localização'
               icon={Place}
             />
           </div>
-        </section>
+        </section> */}
       </Wrapper>
     );
   }
