@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import axios from 'axios';
 
 import Wrapper from '../../hoc/Wrapper';
-import Modal from './../../components/UI/Modal/Modal';
 
 
 class Wheater extends Component {
