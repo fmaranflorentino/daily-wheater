@@ -5,13 +5,13 @@ import Header from './../UI/Header/';
 
 import './Layout.css';
 
-const layout = (props) => (
+const Layout = (props) => (
    <Wrapper>
     <Header></Header>
-    <main class="app-container">
+    <main className="app-container">
         {props.children}
     </main>
    </Wrapper>
 );
 
-export default layout;
+export default Layout;

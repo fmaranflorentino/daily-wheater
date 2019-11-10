@@ -1,17 +1,25 @@
 * {
-    margin: 0;
-    padding: 0;
+  margin: 0;
+  padding: 0;
 
-    box-sizing: border-box;
+  box-sizing: border-box;
 
-    font-family: 'Ubuntu', sans-serif;
+  font-family: "Ubuntu", sans-serif;
 }
 
 .app-container {
-  background: linear-gradient(#050e2f, #030b27);
+  background: linear-gradient(to bottom right, #fff 88%, #835dfe);
 
   width: 100vw;
-  height: calc(100vh - 70px);
+  height: calc(100vh - 50px);
 
   padding: 0 40px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.app-container :after {
+
 }
