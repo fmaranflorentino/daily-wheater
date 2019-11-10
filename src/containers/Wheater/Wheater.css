@@ -1,0 +1,222 @@
+section {
+  width: 100%;
+  height: 100%;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+section .no-content {
+  transform: scale(0);
+  background: #eee;
+  border-radius: 8px;
+
+  width: 60%;
+  height: 60%;
+  margin: auto;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+section .no-content button {
+  border-radius: 8px;
+  background-color: #835dfe;
+  color: #fff;
+  text-transform: uppercase;
+  font-weight: bold;
+  border: 0;
+  outline: 0;
+
+  cursor: pointer;
+
+  display: flex;
+  align-items: center;
+  margin: 40px 0 0 0;
+  padding: 14px 20px;
+
+  transform: scale(0);
+  opacity: 0;
+}
+
+section .no-content button img {
+  margin: 0 10px 0 0;
+}
+
+section .no-content p {
+  text-align: center;
+  font-size: 20px;
+
+  transform: scale(0);
+  opacity: 0;
+}
+
+section .no-content p span {
+  font-weight: bold;
+  font-size: 25px;
+
+  display: block;
+}
+
+section .no-content img {
+  margin-bottom: 20px;
+
+  transform: translateZ(0);
+}
+
+section .no-content.activeNoContent {
+  animation: enterNoContent 0.4s ease-out forwards;
+}
+
+section .no-content.leaveActiveContent {
+    animation: leaveNoContent 0.4s ease-out forwards;
+  }
+
+section .no-content.activeNoContent.finish img {
+  animation: shake 0.4s ease-out forwards;
+}
+
+section .no-content.activeNoContent.finish button {
+  animation: enterNoContent 0.4s ease-out forwards;
+  animation-delay: 700ms;
+}
+
+section .no-content.activeNoContent.finish p {
+  animation: jackInTheBox 0.4s ease-out forwards;
+  animation-delay: 400ms;
+}
+
+@keyframes enterNoContent {
+  0% {
+    opacity: 0;
+    transform: scale(0);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(0.5);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes leaveNoContent {
+    0% {
+      opacity: 1;
+      transform: scale(1);
+    }
+    50% {
+      opacity: 1;
+      transform: scale(0.5);
+    }
+    100% {
+      opacity: 0;
+      transform: scale(0);
+    }
+  }
+
+@-webkit-keyframes jackInTheBox {
+  0% {
+    opacity: 0;
+    -webkit-transform: scale(0.1) rotate(30deg);
+    transform: scale(0.1) rotate(30deg);
+    -webkit-transform-origin: center bottom;
+    transform-origin: center bottom;
+  }
+  50% {
+    -webkit-transform: rotate(-10deg);
+    transform: rotate(-10deg);
+  }
+  70% {
+    -webkit-transform: rotate(3deg);
+    transform: rotate(3deg);
+  }
+  to {
+    opacity: 1;
+    -webkit-transform: scale(1);
+    transform: scale(1);
+  }
+}
+@keyframes jackInTheBox {
+  0% {
+    opacity: 0;
+    -webkit-transform: scale(0.1) rotate(30deg);
+    transform: scale(0.1) rotate(30deg);
+    -webkit-transform-origin: center bottom;
+    transform-origin: center bottom;
+  }
+  50% {
+    -webkit-transform: rotate(-10deg);
+    transform: rotate(-10deg);
+  }
+  70% {
+    -webkit-transform: rotate(3deg);
+    transform: rotate(3deg);
+  }
+  to {
+    opacity: 1;
+    -webkit-transform: scale(1);
+    transform: scale(1);
+  }
+}
+.jackInTheBox {
+  -webkit-animation-name: jackInTheBox;
+  animation-name: jackInTheBox;
+}
+
+@-webkit-keyframes shake {
+  0%,
+  to {
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+  }
+  10%,
+  30%,
+  50%,
+  70%,
+  90% {
+    -webkit-transform: translate3d(-10px, 0, 0);
+    transform: translate3d(-10px, 0, 0);
+  }
+  20%,
+  40%,
+  60%,
+  80% {
+    -webkit-transform: translate3d(10px, 0, 0);
+    transform: translate3d(10px, 0, 0);
+  }
+}
+@keyframes shake {
+  0%,
+  to {
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+  }
+  10%,
+  30%,
+  50%,
+  70%,
+  90% {
+    -webkit-transform: translate3d(-10px, 0, 0);
+    transform: translate3d(-10px, 0, 0);
+  }
+  20%,
+  40%,
+  60%,
+  80% {
+    -webkit-transform: translate3d(10px, 0, 0);
+    transform: translate3d(10px, 0, 0);
+  }
+}
+.shake {
+  -webkit-animation-name: shake;
+  animation-name: shake;
+}
+
+.dsd {
+    display: none;
+}
