@@ -1,14 +1,15 @@
 .Header {
-    background: linear-gradient(#09143c, #050e2f);
+    /* background: linear-gradient(to left, #5236ac 6%, #5236ac 6%, #7414bc 56%); */
+     background: linear-gradient(to right, #835dfe 6%,#835dfe 6%,#9f3afe 56%);
 
     font-family: 'Ubuntu Bold';
-    font-size: 2rem;
+    font-size: 1.3rem;
     color: #fff;
 
     display: flex;
     align-items: center;
 
     width: 100vw;
-    height: 70px;
+    height: 50px;
     padding: 0 40px;
 }
