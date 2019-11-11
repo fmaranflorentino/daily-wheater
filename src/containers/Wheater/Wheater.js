@@ -33,6 +33,7 @@ class Wheater extends Component {
     this.userRequestLocationHandler = this.userRequestLocationHandler.bind(this);
     this.requestWeatherForescast = this.requestWeatherForescast.bind(this);
     this.refreshWeatherStatus = this.refreshWeatherStatus.bind(this);
+    this.setError = this.setError.bind(this);
   }
 
   componentDidMount() {
@@ -40,6 +41,10 @@ class Wheater extends Component {
     setTimeout(() => {
       this.setState({ finishAnimation: true })
     }, 600);
+  }
+
+  setError(error) {
+    this.setState({ error: true });
   }
 
   userRequestLocationHandler(error) {
@@ -71,16 +76,28 @@ class Wheater extends Component {
     this.requestWeatherForescast(params);
   }
 
+  executeRequest(params) {
+    return new Promise((resolve, reject) => {
+      axios.get(`https://api.openweathermap.org/data/2.5/weather`, { params })
+      .then(res => {
+        resolve(res);
+      })
+      .catch(error => {
+        reject(error);
+      });
+    }
+    );
+  }
+
   requestWeatherForescast(params) {
     this.setState({ loadingRequest: true });
 
-    axios.get(`http://api.openweathermap.org/data/2.5/weather`, { params })
-      .then(res => {
+    this.executeRequest(params)
+      .then((res) => {
         const currentWeather = res.data;
         const [weather] = res.data.weather;
         currentWeather.weather = weather;
         weather.country = res.data.sys.country;
-
         const date = new Date().toString();
 
         this.setState({
@@ -90,30 +107,13 @@ class Wheater extends Component {
           lastUpdate: date,
         });
       });
-
-    console.log(this.state);
   }
 
   refreshWeatherStatus ()  {
-    console.log('porra')
     this.setState({ loadingRequest: true });
     const params = this.state.requestParams;
-    axios.get(`http://api.openweathermap.org/data/2.5/weather`, { params })
-      .then(res => {
-        const currentWeather = res.data;
-        const [weather] = res.data.weather;
-        currentWeather.weather = weather;
-        weather.country = res.data.sys.country;
 
-        const date = new Date().toString();
-
-        this.setState({
-          currentWeather,
-          hasWeater: true,
-          loadingRequest: false,
-          lastUpdate: date,
-        });
-      });
+    this.requestWeatherForescast(params);
   }
 
   render() {
