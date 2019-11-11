@@ -3,7 +3,7 @@ import React from 'react';
 import './Loader.css';
 
 const Loader = () => {
-    return <div class="Loader"></div>
+    return <div className="Loader"></div>
 }
 
 export default Loader;
