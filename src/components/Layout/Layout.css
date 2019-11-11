@@ -20,6 +20,15 @@
   align-items: center;
 }
 
-.app-container :after {
-
+@media screen and (max-width: 767px) {
+  .app-container {
+    padding: 0 20px;
+  }
 }
+
+@media screen and (max-width: 480px) {
+  .app-container {
+    padding: 5px;
+  }
+}
+
