@@ -8,7 +8,7 @@ import './NoGeolocation.css';
 const NoGeolocation = (props) => {
     const classes = [
         'no-content',
-        props.initialAnimation ? 'activeNoContent' : 'dsd',
+        props.initialAnimation ? 'activeNoContent' : '',
         props.finishAnimation ? 'finish' : 'leaveActiveContent'
     ];
     return (
