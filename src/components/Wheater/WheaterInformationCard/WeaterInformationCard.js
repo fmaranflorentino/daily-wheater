@@ -112,8 +112,6 @@ const WeatherInformationCard = (props) => {
                             click={props.refreshWeather}
                         />
                     </div>
-                    <div>
-                    </div>
                 </article>
             </Wrapper>
         );
