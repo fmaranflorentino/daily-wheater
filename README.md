@@ -9,6 +9,8 @@
 
 ### This react application is a technical demonstration for [Platform Builders](https://platformbuilders.io/)
 
+## Running application demo page, [click here](https://wizardbr.github.io/daily-weather/) to see.
+
 
 ### Application develop by:
 
