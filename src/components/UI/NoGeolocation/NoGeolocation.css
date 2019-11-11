@@ -221,3 +221,24 @@ section {
   /* .dsd {
       display: none;
   } */
+
+
+  @media screen and (max-width: 767px) {
+    section .no-content {
+      width: 90%;
+      height: 70%;
+    }
+  }
+
+  @media screen and (max-width: 480px) {
+    section .no-content {
+      width: 90%;
+      height: 90%;
+    }
+
+    section .no-content p {
+      font-size: 18px;
+
+      padding: 0 25px;
+    }
+  }
