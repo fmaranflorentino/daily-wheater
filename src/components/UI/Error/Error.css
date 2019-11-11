@@ -23,3 +23,15 @@
 
     max-width: 80%;
 }
+
+@media screen and (max-width: 767px) {
+  .Error {
+    width: 90%;
+    min-width: 90%;  }
+}
+
+@media screen and (max-width: 480px) {
+  .Error p {
+    font-size: 0.8rem;
+  }
+}
