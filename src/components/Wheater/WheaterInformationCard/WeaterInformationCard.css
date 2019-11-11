@@ -10,12 +10,17 @@
 .header-info {
   width: 100%;
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  justify-content: space-between;
+  text-align: right;
 }
 
 .header-info span {
   font-size: 3rem;
+}
+
+.header-info img {
+  width: 90px;
 }
 
 .card-body {
@@ -25,51 +30,50 @@
     margin: 20px 0 0 0;
 }
 
+.card-footer {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
 .enter {
   animation: jackInTheBox 0.4s forwards;
 }
 
-@-webkit-keyframes jackInTheBox {
-  0% {
-    opacity: 0;
-    -webkit-transform: scale(0.1) rotate(30deg);
-    transform: scale(0.1) rotate(30deg);
-    -webkit-transform-origin: center bottom;
-    transform-origin: center bottom;
-  }
-  50% {
-    -webkit-transform: rotate(-10deg);
-    transform: rotate(-10deg);
-  }
-  70% {
-    -webkit-transform: rotate(3deg);
-    transform: rotate(3deg);
-  }
-  to {
-    opacity: 1;
-    -webkit-transform: scale(1);
-    transform: scale(1);
-  }
+.last-updates{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+
+  text-align: right;
 }
-@keyframes jackInTheBox {
-  0% {
-    opacity: 0;
-    -webkit-transform: scale(0.1) rotate(30deg);
-    transform: scale(0.1) rotate(30deg);
-    -webkit-transform-origin: center bottom;
-    transform-origin: center bottom;
+
+.last-updates button {
+  width: 130px;
+}
+
+.temperature {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+strong,
+h5 {
+  color: #9f3afe;
+}
+
+.infos {
+  width: 100%;
+}
+
+@media screen and (max-width: 767px) {
+  .weather-card {
+    width: 90%;
   }
-  50% {
-    -webkit-transform: rotate(-10deg);
-    transform: rotate(-10deg);
-  }
-  70% {
-    -webkit-transform: rotate(3deg);
-    transform: rotate(3deg);
-  }
-  to {
-    opacity: 1;
-    -webkit-transform: scale(1);
-    transform: scale(1);
+
+  .header-info img {
+    width: 70px;
   }
 }
