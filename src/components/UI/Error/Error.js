@@ -1,4 +1,6 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+
 
 import Wrapper from './../../../hoc/Wrapper';
 
@@ -15,5 +17,9 @@ const Error = (props) => {
         </Wrapper>
     );
 }
+
+Error.propTypes = {
+    message: PropTypes.string.isRequired
+};
 
 export default Error;
