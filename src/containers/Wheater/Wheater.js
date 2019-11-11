@@ -21,6 +21,8 @@ class Wheater extends Component {
     finishAnimation: false,
     loadingRequest: false,
     hasweater: false,
+    lastUpdate: null,
+    requestParams: null,
   }
 
   constructor() {
@@ -30,23 +32,13 @@ class Wheater extends Component {
     this.getUserGeolocationHandler = this.getUserGeolocationHandler.bind(this);
     this.userRequestLocationHandler = this.userRequestLocationHandler.bind(this);
     this.requestWeatherForescast = this.requestWeatherForescast.bind(this);
+    this.refreshWeatherStatus = this.refreshWeatherStatus.bind(this);
   }
 
   componentDidMount() {
     this.setState({ initialAnimation: true })
     setTimeout(() => {
       this.setState({ finishAnimation: true })
-
-      // if (navigator.geolocation) {
-      //   navigator.geolocation
-      //     .getCurrentPosition((pos) => {
-      //       if (pos) {
-      //         this.setState({ hasGeolocation: true })
-      //       }
-      //     });
-      // }
-
-
     }, 600);
   }
 
@@ -68,13 +60,13 @@ class Wheater extends Component {
     const lon = position.coords.longitude;
 
     const params = {
-      lat: latitude,
       lon,
+      lat: latitude,
       APPID: '3cc15f29b5e1a6baec11ab23768ab424',
       units: 'metric'
     };
 
-    this.setState({ hasGeolocation: true })
+    this.setState({ hasGeolocation: true, requestParams: params });
 
     this.requestWeatherForescast(params);
   }
@@ -87,18 +79,44 @@ class Wheater extends Component {
         const currentWeather = res.data;
         const [weather] = res.data.weather;
         currentWeather.weather = weather;
+        weather.country = res.data.sys.country;
 
-        this.setState({ currentWeather, hasWeater: true, loadingRequest: false });
+        const date = new Date().toString();
+
+        this.setState({
+          currentWeather,
+          hasWeater: true,
+          loadingRequest: false,
+          lastUpdate: date,
+        });
       });
 
     console.log(this.state);
   }
 
-  render() {
-    // if (this.state && this.state.hasGeolocation) {
-    //   return <p>has porra</p>
-    // }
+  refreshWeatherStatus ()  {
+    console.log('porra')
+    this.setState({ loadingRequest: true });
+    const params = this.state.requestParams;
+    axios.get(`http://api.openweathermap.org/data/2.5/weather`, { params })
+      .then(res => {
+        const currentWeather = res.data;
+        const [weather] = res.data.weather;
+        currentWeather.weather = weather;
+        weather.country = res.data.sys.country;
 
+        const date = new Date().toString();
+
+        this.setState({
+          currentWeather,
+          hasWeater: true,
+          loadingRequest: false,
+          lastUpdate: date,
+        });
+      });
+  }
+
+  render() {
     const defaultState = (
       <Wrapper>
         <NoGeolocation
@@ -113,22 +131,23 @@ class Wheater extends Component {
       </Wrapper>
     );
 
-    const hasWeatherInformationState = (props) => (
+    const hasWeatherInformationState = (
       <Wrapper>
 
         <WeaterInformationCard
           weather={this.state.currentWeather.weather}
-          regionName={props.regionName}
+          regionName={this.state.currentWeather.name}
+          lastUpdate={this.state.lastUpdate}
           show={this.state.hasGeolocation}
           main={this.state.currentWeather.main}
+          refreshWeather={this.refreshWeatherStatus}
         />
 
       </Wrapper>
     )
 
     if (this.state && this.state.hasWeater && !this.state.loadingRequest) {
-      const regionName = this.state.currentWeather.name;
-      return hasWeatherInformationState(regionName);
+      return hasWeatherInformationState;
     }
 
     if (this.state && this.state.userDenied && !this.state.loadingRequest) {
