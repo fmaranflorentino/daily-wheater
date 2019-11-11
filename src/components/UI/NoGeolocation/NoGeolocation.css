@@ -86,7 +86,7 @@ section {
   }
   
   section .no-content.activeNoContent.finish p {
-    animation: jackInTheBox 0.4s ease-out forwards;
+    animation: shakeBox 0.4s ease-out forwards;
     animation-delay: 400ms;
   }
   
@@ -120,7 +120,7 @@ section {
       }
     }
   
-  @-webkit-keyframes jackInTheBox {
+  @-webkit-keyframes shakeBox {
     0% {
       opacity: 0;
       -webkit-transform: scale(0.1) rotate(30deg);
@@ -142,7 +142,7 @@ section {
       transform: scale(1);
     }
   }
-  @keyframes jackInTheBox {
+  @keyframes shakeBox {
     0% {
       opacity: 0;
       -webkit-transform: scale(0.1) rotate(30deg);
@@ -164,9 +164,9 @@ section {
       transform: scale(1);
     }
   }
-  .jackInTheBox {
-    -webkit-animation-name: jackInTheBox;
-    animation-name: jackInTheBox;
+  .shakeBox {
+    -webkit-animation-name: shakeBox;
+    animation-name: shakeBox;
   }
   
   @-webkit-keyframes shake {

@@ -37,7 +37,7 @@
 }
 
 .enter {
-  animation: jackInTheBox 0.4s forwards;
+  animation: shakeBox 0.4s forwards;
 }
 
 .last-updates{

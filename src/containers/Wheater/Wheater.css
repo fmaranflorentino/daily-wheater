@@ -61,7 +61,7 @@
     animation-delay: 0.3s;
 }
 
-@-webkit-keyframes jackInTheBox {
+@-webkit-keyframes shakeBox {
   0% {
     opacity: 0;
     -webkit-transform: scale(0.1) rotate(30deg);
@@ -83,7 +83,8 @@
     transform: scale(1);
   }
 }
-@keyframes jackInTheBox {
+
+@keyframes shakeBox {
   0% {
     opacity: 0;
     -webkit-transform: scale(0.1) rotate(30deg);
